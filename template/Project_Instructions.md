@@ -2,6 +2,8 @@
 
 > **Setup note:** Before using this file, replace every placeholder in square brackets — `[Candidate Name]`, `[Candidate First Name]`, `[Word Template Filename]`, `[Workspace Folder Path]` — with the candidate's real values. The Setup Orchestrator will do this for you. Once populated, paste the contents of this file into your Cowork project's instructions field (or equivalent system-prompt location). See `Project_Instructions_Changelog.md` for change history once the framework is in active use.
 
+> **Versioning & change-history discipline (canonical rule).** Keep version history *out* of this file. On every version change: (1) update a single **Current version** line (add one at the top once the framework is in active use); (2) append a full entry to `Project_Instructions_Changelog.md`. **Never accumulate per-version banner paragraphs at the top of this file** — history belongs in the changelog, not the always-loaded instructions. Mirror the version number into the template package per the mirror rule (instructions `VX.Y` ↔ template `v0.X.Y`).
+
 ---
 
 ## Quick-start triggers (mobile-friendly kickoff vocabulary)

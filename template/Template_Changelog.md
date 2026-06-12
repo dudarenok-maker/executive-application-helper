@@ -2,7 +2,7 @@
 title: Template Package Changelog
 scope: Tracks structural changes to the Executive Application Helper template package itself (this `_Template/` folder)
 format: Reverse-chronological. Most recent entries at the top.
-last_updated: 2026-06-12 (v0.5.4 — skill-based architecture: 11 skill skeletons in skills/, verification-gates wiring, Setup Phase 4, public GitHub distribution (MIT). Prior same day: PDF output disciplines for annotated prep documents added to the Interview Prep skeleton — v0.4.6. Prior: 2026-05-29 — Data-integrity & resilience disciplines section added — v0.4.5)
+last_updated: 2026-06-12 (v0.5.5 — mirror-sync to instructions V5.5 (version-history banners removed from the live instructions file; no template skeleton content changed). Prior: v0.5.4 — skill-based architecture: 11 skill skeletons in skills/, verification-gates wiring, Setup Phase 4, public GitHub distribution (MIT). Prior same day: PDF output disciplines for annotated prep documents added to the Interview Prep skeleton — v0.4.6. Prior: 2026-05-29 — Data-integrity & resilience disciplines section added — v0.4.5)
 ---
 
 # Template Package Changelog
@@ -31,6 +31,7 @@ The template version **mirrors the candidate's live project-instructions version
 - **The MINOR digit tracks the instructions MAJOR** (V5.x → v0.5.x).
 - **The PATCH digit tracks the instructions MINOR** (V5.4 → v0.5.4).
 - **A template-only fix** that corresponds to no instructions change takes the next free patch and notes "template-only" in its entry.
+- **An instructions-only change** (e.g. housekeeping in the live instructions that does not touch the template skeleton) still advances the template version to keep the mirror in lockstep; its entry notes "mirror-sync — no skeleton content changed."
 
 (Adopted 2026-06-12, retro-applied from v0.5.0 → v0.5.4 to mirror instructions V5.4. Prior history v0.1.0 → v0.4.6 predates the mirror rule and is left as-is.)
 
@@ -49,6 +50,14 @@ The template version **mirrors the candidate's live project-instructions version
 ---
 
 # Changelog
+
+### 2026-06-12 — Mirror-sync to instructions V5.5 — v0.5.4 → v0.5.5
+
+- **Type:** Editorial (mirror-sync; no template skeleton content changed).
+- **Files touched (`_Template/`):** `Template_Changelog.md` (this entry; front-matter bumped to v0.5.5; Versioning section gains the instructions-only-change clause). No other skeleton file changed.
+- **Mirrors live change:** instructions V5.4 → V5.5 — the V5.0–V5.4 version-history banners were removed from the top of the live `Project_Instructions_V5.md` and replaced with a one-line current-version pointer to the changelog (history belongs in the changelog, not the always-loaded instructions). The template's instructions skeleton already used a setup-note header with no banner stack, so there was nothing to remove there.
+- **Why the version still moved:** under the mirror rule (instructions `VX.Y` ↔ template `v0.X.Y`) the template version advances in lockstep even when a change is instructions-only, so the two numbers stay legible against each other. See the Versioning section.
+- **What a downstream user notices:** nothing in the skeleton changes; the package is re-tagged v0.5.5 to match instructions V5.5.
 
 ### 2026-06-12 — Skill-based architecture: eleven de-personalised skill skeletons, verification-gates wiring, Setup Phase 4, public GitHub distribution; version line re-aligned to mirror instructions — v0.4.6 → v0.5.4
 

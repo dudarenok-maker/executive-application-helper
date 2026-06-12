@@ -46,7 +46,7 @@ If you want a button that fires off applications without your judgement in the l
 |---|---|
 | `template/` | The de-personalised framework: project instructions, setup orchestrator, evidence-bank skeletons, voice-guide templates, changelog scaffolds |
 | `template/skills/` | Eleven de-personalised skill skeletons (SKILL.md + references) — populate, package as `.skill`, and install per Setup Phase 4 |
-| `template/Template_Changelog.md` | Version history of the framework package (current: v0.5.4) |
+| `template/Template_Changelog.md` | Version history of the framework package (current: v0.5.5) |
 | `LICENSE` | MIT |
 | `CONTRIBUTING.md` | How to propose improvements |
 
