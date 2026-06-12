@@ -1,0 +1,12 @@
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Packaged skills are built from template/skills/ at setup — don't version binaries
+*.skill
+*.zip
