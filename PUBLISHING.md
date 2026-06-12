@@ -21,6 +21,6 @@ git add -A && git commit -m "v0.x.y — <short descriptor from Template_Changelo
 git push
 ```
 
-Tag major versions: `git tag v0.5.0 && git push --tags`.
+Tag releases to mirror the instructions version: `git tag v0.5.4 && git push --tags` (template `v0.X.Y` mirrors instructions `VX.Y`).
 
 This file is maintainer-local and harmless to publish; delete it from the repo if preferred.

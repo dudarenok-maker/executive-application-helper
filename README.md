@@ -31,7 +31,7 @@ Built and iterated across months of real executive applications (CIO / CTO / COO
 |---|---|
 | `template/` | The de-personalised framework: project instructions, setup orchestrator, evidence-bank skeletons, voice-guide templates, changelog scaffolds |
 | `template/skills/` | Eleven de-personalised skill skeletons (SKILL.md + references) — populate, package as `.skill`, and install per Setup Phase 4 |
-| `template/Template_Changelog.md` | Version history of the framework package (current: v0.5.0) |
+| `template/Template_Changelog.md` | Version history of the framework package (current: v0.5.4) |
 | `LICENSE` | MIT |
 | `CONTRIBUTING.md` | How to propose improvements |
 

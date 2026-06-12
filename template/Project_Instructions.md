@@ -108,7 +108,7 @@ The interview-preparation workflow is documented in `Interview_Prep_Template.md`
 
 ## Canonical files and loading rules
 
-> **v0.5.0 skill-based architecture.** This template ships with de-personalised skill skeletons in `skills/` (see the Verification skills section below and Setup Orchestrator Phase 4). Once installed, the `candidate-voice` skill is the canonical home for the voice guides and the interview-prep template — the workspace copies become setup sources / stubs, not load-always files. The verification skills load on trigger and add no per-session weight.
+> **v0.5.4 skill-based architecture.** This template ships with de-personalised skill skeletons in `skills/` (see the Verification skills section below and Setup Orchestrator Phase 4). Once installed, the `candidate-voice` skill is the canonical home for the voice guides and the interview-prep template — the workspace copies become setup sources / stubs, not load-always files. The verification skills load on trigger and add no per-session weight.
 
 | File | Role | Load when |
 |---|---|---|
@@ -397,7 +397,7 @@ These disciplines exist because append-only and large structured files — the e
 
 ---
 
-# Verification skills (v0.5.0 skill-based architecture)
+# Verification skills (v0.5.4 skill-based architecture)
 
 The framework's verification disciplines are enforced by eleven installable skills (de-personalised skeletons in `skills/`; installed at Setup Phase 4). They convert trust-based rules — the ones most often skipped under context pressure — into mechanical pass/fail gates. Ordering rules stay in this file; skills implement the content of each check.
 

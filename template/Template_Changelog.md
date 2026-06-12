@@ -2,7 +2,7 @@
 title: Template Package Changelog
 scope: Tracks structural changes to the Executive Application Helper template package itself (this `_Template/` folder)
 format: Reverse-chronological. Most recent entries at the top.
-last_updated: 2026-06-12 (v0.5.0 — skill-based architecture: 11 skill skeletons in skills/, verification-gates wiring, Setup Phase 4, public GitHub distribution (MIT). Prior same day: PDF output disciplines for annotated prep documents added to the Interview Prep skeleton — v0.4.6. Prior: 2026-05-29 — Data-integrity & resilience disciplines section added — v0.4.5)
+last_updated: 2026-06-12 (v0.5.4 — skill-based architecture: 11 skill skeletons in skills/, verification-gates wiring, Setup Phase 4, public GitHub distribution (MIT). Prior same day: PDF output disciplines for annotated prep documents added to the Interview Prep skeleton — v0.4.6. Prior: 2026-05-29 — Data-integrity & resilience disciplines section added — v0.4.5)
 ---
 
 # Template Package Changelog
@@ -26,11 +26,13 @@ The maintenance protocol is: whenever a structural change is made to the live fr
 
 ## Versioning
 
-The template uses semantic-style versioning: `vMAJOR.MINOR.PATCH`.
+The template version **mirrors the candidate's live project-instructions version**: instructions `VX.Y` maps to template `v0.X.Y` (so instructions V5.4 → template **v0.5.4**; a future V6.0 → **v0.6.0**, V6.1 → v0.6.1, and so on). This keeps the published package and the operating instructions legible against each other at a glance. The leading `0.` marks the package as pre-1.0 (still evolving); it rolls to `1.x` only if the framework is ever declared stable for outside users independent of the candidate's own line.
 
-- **Major** — breaking structural changes; downstream users with active setups should review whether to migrate.
-- **Minor** — non-breaking additions or refinements; safe to adopt incrementally.
-- **Patch** — editorial fixes only.
+- **The MINOR digit tracks the instructions MAJOR** (V5.x → v0.5.x).
+- **The PATCH digit tracks the instructions MINOR** (V5.4 → v0.5.4).
+- **A template-only fix** that corresponds to no instructions change takes the next free patch and notes "template-only" in its entry.
+
+(Adopted 2026-06-12, retro-applied from v0.5.0 → v0.5.4 to mirror instructions V5.4. Prior history v0.1.0 → v0.4.6 predates the mirror rule and is left as-is.)
 
 ## Entry template
 
@@ -48,14 +50,15 @@ The template uses semantic-style versioning: `vMAJOR.MINOR.PATCH`.
 
 # Changelog
 
-### 2026-06-12 — Skill-based architecture: eleven de-personalised skill skeletons, verification-gates wiring, Setup Phase 4, public GitHub distribution — v0.4.6 → v0.5.0
+### 2026-06-12 — Skill-based architecture: eleven de-personalised skill skeletons, verification-gates wiring, Setup Phase 4, public GitHub distribution; version line re-aligned to mirror instructions — v0.4.6 → v0.5.4
 
 - **Type:** Major (new `skills/` folder with 11 skill skeletons; new mandatory-wiring section in the Project Instructions skeleton; new setup phase; new distribution channel).
-- **Files touched (`_Template/`):** `skills/` (new — `candidate-voice`, `watchouts-sweep`, `length-check`, `bank-integrity-check`, `matrix-row-traceability`, `coverage-audit`, `star-audit`, `pace-audit`, `capability-mapping-check`, `snapshot-check`, `personal-context-discretion-check`; each SKILL.md + references where applicable; all de-personalised with `[Candidate Name]` / `[Candidate First Name]` / `[Workspace Folder Path]` placeholders); `Project_Instructions.md` (note at the top of Canonical files; new "Verification skills (v0.5.0 skill-based architecture)" section before STEP 5, with the full skill table, gate behaviours and run-mode guidance); `01_SETUP_ORCHESTRATOR.md` (new Phase 4 — populate, de-placeholder, package and install the skills; verify triggering); `Template_Changelog.md` (this entry; front-matter bumped to v0.5.0).
+- **Files touched (`_Template/`):** `skills/` (new — `candidate-voice`, `watchouts-sweep`, `length-check`, `bank-integrity-check`, `matrix-row-traceability`, `coverage-audit`, `star-audit`, `pace-audit`, `capability-mapping-check`, `snapshot-check`, `personal-context-discretion-check`; each SKILL.md + references where applicable; all de-personalised with `[Candidate Name]` / `[Candidate First Name]` / `[Workspace Folder Path]` placeholders); `Project_Instructions.md` (note at the top of Canonical files; new "Verification skills (v0.5.4 skill-based architecture)" section before STEP 5, with the full skill table, gate behaviours and run-mode guidance); `01_SETUP_ORCHESTRATOR.md` (new Phase 4 — populate, de-placeholder, package and install the skills; verify triggering); `Template_Changelog.md` (this entry; front-matter bumped to v0.5.4).
 - **Mirrors live change:** live framework V5.0 → V5.4 — voice consolidation into a reference skill, three Wave 1 verification skills (advisory → gate after a two-week review), and the V5.4 Wave 2 + Wave 3 build-out completing all ten verification disciplines as skills.
 - **Also fixed:** the v0.4.5 and v0.4.6 entries had been inserted inside the "Entry template" code fence rather than under `# Changelog`; both moved to their correct position (content unchanged).
 - **Distribution:** the template package is now also published as the `executive-application-helper` GitHub repository (MIT licence). Structural changes mirrored here should also be committed to the repo working copy.
 - **What a downstream user notices:** the package now ships enforcement, not just discipline — eleven installable skills, a setup phase that wires them, and a public repo to pull updates from.
+- **Version-line re-alignment:** the template version now mirrors the live instructions version (`VX.Y` → `v0.X.Y`); this release is numbered **v0.5.4** to match instructions V5.4 (it would have been v0.5.0 under the old independent line). See the Versioning section for the rule.
 
 ### 2026-06-12 — PDF output disciplines for annotated prep documents added to the Interview Prep skeleton (v0.4.5 → v0.4.6)
 
