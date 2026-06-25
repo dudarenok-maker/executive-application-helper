@@ -2,7 +2,7 @@
 title: Template Package Changelog
 scope: Tracks structural changes to the Executive Application Helper template package itself (this `_Template/` folder)
 format: Reverse-chronological. Most recent entries at the top.
-last_updated: 2026-06-12 (v0.5.5 — mirror-sync to instructions V5.5 (version-history banners removed from the live instructions file; no template skeleton content changed). Prior: v0.5.4 — skill-based architecture: 11 skill skeletons in skills/, verification-gates wiring, Setup Phase 4, public GitHub distribution (MIT). Prior same day: PDF output disciplines for annotated prep documents added to the Interview Prep skeleton — v0.4.6. Prior: 2026-05-29 — Data-integrity & resilience disciplines section added — v0.4.5)
+last_updated: 2026-06-25 (v0.5.6 — mirror-sync to instructions V5.6: new discipline D6 (Read-tool/shell coherence) + bank-integrity-check Axis 0 stability probe. Prior: v0.5.5 — mirror-sync to instructions V5.5 (version-history banners removed from the live instructions file; no template skeleton content changed). Prior: v0.5.4 — skill-based architecture: 11 skill skeletons in skills/, verification-gates wiring, Setup Phase 4, public GitHub distribution (MIT). Prior same day: PDF output disciplines for annotated prep documents added to the Interview Prep skeleton — v0.4.6. Prior: 2026-05-29 — Data-integrity & resilience disciplines section added — v0.4.5)
 ---
 
 # Template Package Changelog
@@ -50,6 +50,13 @@ The template version **mirrors the candidate's live project-instructions version
 ---
 
 # Changelog
+
+### 2026-06-25 — Mirror-sync to instructions V5.6 — v0.5.5 → v0.5.6
+
+- **Type:** Structural — new resilience discipline + skill-skeleton update.
+- **Change:** Mirrored instructions Convention 18 into the template as **discipline D6** (Read-tool / shell coherence for changelogs and append-only files), added a pointer from D4, and updated the `bank-integrity-check` skill skeleton — header coherence caveat plus an **Axis 0** mounted-folder stability probe ahead of the three integrity axes.
+- **Reason:** Root-cause finding (2026-06-25): on a mounted/synced workspace, a host-side editor write can be served stale to a shell read, and writing that view back truncates the file. This was the cause of a recurring changelog-truncation cycle that the rebuild-whole rule (D3) alone did not stop. De-personalised for any user's environment.
+- **Files touched:** `Project_Instructions.md` (D6 + D4 pointer); `skills/bank-integrity-check/references/check-script.sh` (Axis 0 + caveat); `skills/bank-integrity-check/SKILL.md` (coherence section); `Template_Changelog.md` (this entry); `README.md` (version bump).
 
 ### 2026-06-12 — Mirror-sync to instructions V5.5 — v0.5.4 → v0.5.5
 

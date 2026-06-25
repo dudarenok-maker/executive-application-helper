@@ -23,6 +23,10 @@ description: "Run a three-axis integrity check on the framework's evidence-bank 
 
 **Halt the session close.** Restore from the latest good pre-edit snapshot in `_resources/` (per the snapshot-check skill and `RESTORE_INDEX.md`), re-apply the intended change, re-run. Integrity failures are always actionable — advisory mode does not apply to this skill.
 
+## Coherence caveat — a PASS can reflect a STALE view (discipline D6)
+
+This script reads through the shell. If the workspace is a mounted or synced folder, a file changed by the host-side editor tools may not be coherently visible to a shell read, so the shell can serve a **stale, wrong-length** view. A PASS therefore means only that the *shell view* is intact — not the host file. **Always pair a PASS with a file-tool (Read) cross-check** of the changelog tail. The bundled script prints an **Axis 0 (advisory) stability probe** first (two reads 1 s apart); it catches in-flux staleness but **not** a steadily-stale cache — only the cross-tool check does.
+
 ## Output
 
 Per-file, per-axis table (pass/fail with detail), then verdict: **all-pass** or **HALT — restore from [named snapshot]**. Include the output in the STEP 4 maintenance report.

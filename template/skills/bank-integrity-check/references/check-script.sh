@@ -20,6 +20,13 @@
 
 set -uo pipefail
 
+# *** Discipline D6 — COHERENCE CAVEAT ***
+#   This script reads through the shell. If the workspace is a mounted or synced folder,
+#   a file changed by the host-side editor tools may not be coherently visible to a shell
+#   read — the shell can serve a STALE, wrong-length view. A PASS here means only that the
+#   *shell view* is intact. Always pair with a file-tool (Read) cross-check of the changelog
+#   tail. The Axis 0 probe below catches in-flux staleness but NOT a steadily-stale cache.
+#
 BANK_DIR="${1:-$HOME/[Workspace Folder Path]}"
 RESOURCES_DIR="$BANK_DIR/_resources"
 
@@ -32,6 +39,16 @@ axis1_fail=0; axis2_fail=0; axis3_fail=0
 
 echo "=== Bank integrity check (V5 Convention 14 - EXTENDED 2026-05-29) ==="
 echo "Bank dir: $BANK_DIR"
+echo
+echo "--- Axis 0 (advisory): mounted-folder stability probe (discipline D6) ---"
+cl="$BANK_DIR/Evidence_Bank_Changelog.md"
+if [ -f "$cl" ]; then
+  h1=$(sha256sum "$cl" | cut -d" " -f1); sleep 1; h2=$(sha256sum "$cl" | cut -d" " -f1)
+  if [ "$h1" = "$h2" ]; then echo "STABLE across two reads 1s apart (sha $h1)."; 
+  else echo "*** UNSTABLE — folder cache in flux; do NOT write the file back. Re-read via the file (Read) tool. ***"; fi
+  tail -c 5 "$cl" | grep -q -- "---" && echo "changelog EOF: ends ---" || echo "*** changelog EOF: NOT ending in --- ***"
+fi
+echo "REMINDER: a PASS = shell view intact; cross-check the changelog tail with the file (Read) tool (D6)."
 echo
 
 # EOF axis extra files: changelogs + current weekly archive (NOT V*, which ends in prose)
