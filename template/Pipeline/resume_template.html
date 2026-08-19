@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ r.name }} — Resume</title>
+</head>
+<body class="style-{{ style }}{% if short %} short{% endif %}">
+
+  <header class="resume-header">
+    <h1 class="name">{{ r.name }}</h1>
+    {% if r.headline %}<p class="headline">{{ r.headline }}</p>{% endif %}
+    {% if r.contact %}
+    <p class="contact">{% for c in r.contact %}{{ c }}{% if not loop.last %}<span class="sep">|</span>{% endif %}{% endfor %}</p>
+    {% endif %}
+  </header>
+
+  {% if r.profile %}
+  <section class="section profile">
+    <h2>Profile</h2>
+    {% if r.profile is string %}
+    <p>{{ r.profile|md }}</p>
+    {% else %}
+    {% for para in r.profile %}<p>{{ para|md }}</p>
+    {% endfor %}
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if r.highlights %}
+  <section class="section highlights">
+    <h2>Career Highlights</h2>
+    <ul class="highlight-list">
+      {% for h in r.highlights %}<li>{{ h|md }}</li>
+      {% endfor %}
+    </ul>
+    {% if r.credentials %}<p class="credentials">{{ r.credentials }}</p>{% endif %}
+  </section>
+  {% elif r.credentials %}
+  <p class="credentials">{{ r.credentials }}</p>
+  {% endif %}
+
+  {% if r.employment %}
+  <section class="section experience">
+    <h2>Experience</h2>
+    {% for emp in r.employment %}
+      {% if emp.roles | length > 1 %}
+      <div class="employer-group">
+        <h3 class="employer">{{ emp.employer }}{% if emp.about %} <span class="employer-about">— {{ emp.about }}</span>{% endif %}</h3>
+        {% for role in emp.roles %}
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">{{ role.title }}</span>
+            <span class="role-dates">{{ role.dates }}</span>
+          </div>
+          {% if role.location or role.context %}<p class="role-meta">{% if role.context %}{{ role.context }}{% if role.location %} — {% endif %}{% endif %}{{ role.location or "" }}</p>{% endif %}
+          {% if role.bullets %}
+          <ul class="role-bullets">
+            {% for b in role.bullets %}<li>{{ b|md }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      {% set role = emp.roles[0] %}
+      <div class="role">
+        <div class="role-header">
+          <span class="role-title">{{ role.title }}</span>
+          <span class="role-dates">{{ role.dates }}</span>
+        </div>
+        <p class="role-meta">{{ emp.employer }}{% if emp.about %} <span class="employer-about">({{ emp.about }})</span>{% endif %}{% if role.location %} — {{ role.location }}{% endif %}{% if role.context %} — {{ role.context }}{% endif %}</p>
+        {% if role.bullets %}
+        <ul class="role-bullets">
+          {% for b in role.bullets %}<li>{{ b|md }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if r.education %}
+  <section class="section education">
+    <h2>Education</h2>
+    {% for e in r.education %}
+    <p class="education-item"><span class="degree">{{ e.degree }}</span>{% if e.institution %} — <span class="institution">{{ e.institution }}</span>{% endif %}{% if e.year %} <span class="institution">({{ e.year }})</span>{% endif %}</p>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if r.capabilities %}
+  <section class="section capability-snapshot">
+    <h2>Capability Snapshot</h2>
+    {% if short %}
+    <p class="capability-compact">{% for cap in r.capabilities %}{% if cap.label %}<span class="cap-label">{{ cap.label }}:</span> {% endif %}{{ cap.detail|md }}{% if not loop.last %} <span class="cap-sep">&#183;</span> {% endif %}{% endfor %}</p>
+    {% else %}
+    {% for cap in r.capabilities %}
+    <p>{% if cap.label %}<span class="cap-label">{{ cap.label }}:</span> {% endif %}{{ cap.detail|md }}</p>
+    {% endfor %}
+    {% endif %}
+  </section>
+  {% endif %}
+
+</body>
+</html>

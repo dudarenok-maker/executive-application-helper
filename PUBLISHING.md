@@ -14,13 +14,22 @@ git push -u origin main
 
 ## Ongoing releases
 
-When the live framework's Step 5 (template package maintenance) fires, the session mirrors structural changes into the local `_Template/` and this working copy. Then:
+When the live framework's Step 5 (template package maintenance) fires, the session mirrors structural changes into the local `_Template/` and into this working copy, then **commits here but never pushes** — that boundary is deliberate, so nothing reaches the public remote without a maintainer read-through. The mirroring session runs no git command in the parent workspace repository at all. To release:
 
 ```bash
-git add -A && git commit -m "v0.x.y — <short descriptor from Template_Changelog>"
+git log -1 --stat               # what the mirroring session committed
+git show HEAD                   # read it before pushing
 git push
 ```
 
-Tag releases to mirror the instructions version: `git tag v0.5.4 && git push --tags` (template `v0.X.Y` mirrors instructions `VX.Y`).
+If the mirror needs correcting first, amend or add a follow-up commit locally — the unpushed commit is the review checkpoint, not a fait accompli.
+
+Tag releases to mirror the instructions version: `git tag v0.6.5 && git push --tags` (template `v0.X.Y` mirrors instructions `VX.Y`).
+
+**Before a major release**, check three things beyond the diff:
+
+1. **De-personalisation.** Grep the tree for real names, employers, metrics and absolute paths. The one deliberate exception is the maintainer attribution in `README.md` and the historical entries in `template/Template_Changelog.md`, which record who made each change.
+2. **Internal coherence.** No file should reference a retired mechanism as if it were live, and no two files should state the same rule differently. Retirements are the easy thing to half-finish.
+3. **The pipeline runs.** `python3 template/Pipeline/build.py resume --source <a filled-in Resume_Master.md>` should produce a PDF from a populated source. Shipping a build system that doesn't build is worse than shipping no build system.
 
 This file is maintainer-local and harmless to publish; delete it from the repo if preferred.

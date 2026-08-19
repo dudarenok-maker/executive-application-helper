@@ -1,0 +1,45 @@
+# Executive Application Helper — starter .gitignore
+#
+# Copy to `.gitignore` at the workspace root before the baseline commit.
+# The workspace is a git repository: that is what replaced the old
+# snapshot-before-every-edit discipline. Commit at every session close that
+# touched a tracked file, with a message that says what changed and why —
+# under this model the commit message carries the reasoning that changelog
+# entries used to, because entries are now only two to four lines.
+#
+# Setup:
+#   cd "[Workspace Folder Path]"
+#   git init
+#   git config user.name  "[Candidate Name]"
+#   git config user.email "[email]"
+#   cp gitignore.template .gitignore
+#   git add -A && git commit -m "Baseline: initial framework state"
+#
+# Recovery, replacing the snapshot folder entirely:
+#   git diff                          # what changed since the last commit
+#   git checkout -- <file>            # discard uncommitted damage to one file
+#   git log --oneline -- <file>       # every state that file has had
+#   git checkout <commit> -- <file>   # restore one file from any past commit
+
+# Generated output — rebuildable from source, and noisy in diffs
+Resume/*.pdf
+Pipeline/*.pdf
+Pipeline/*.docx
+Pipeline/samples/
+
+# Working scratch
+outputs_work/
+_scratch/
+
+# Any pre-restructure archive kept on disk for reference but out of history
+Archive_V5/
+_resources/
+
+# Documents staged for deletion
+Submissions/_to_delete/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+~$*
+*.tmp

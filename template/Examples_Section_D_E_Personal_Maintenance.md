@@ -40,7 +40,7 @@ The day-to-day maintenance protocol is embedded in the companion file `Evidence_
 - After each application draft, record any new evidence, sharper framings or retired claims in the changelog.
 - Add new entries into the correct capability section (A, B1–B6, C, or D), never as a free-standing addendum.
 - Keep the core response polished and under 200 words; move deep detail into proof points.
-- Keep the master index (Section 4 of `Examples_Master.md`) and role-family recipes (Section 5) in sync with new or retired entries.
+- Keep the master index (Section 4 of `Examples_Master.md`) in sync with new or retired entries — **and both matrix views**: the family index row and its `Matrix_Rows/<ID>.md` detail file. They are two views of one prescription; when they disagree, the row file wins.
 - Review the watch-outs register (Section 7) whenever an example is strengthened by new evidence.
 
 #### E2. Additional note for specialist-domain roles
@@ -53,8 +53,8 @@ The authoritative change history for this evidence bank lives in a separate file
 
 - **File:** `Evidence_Bank_Changelog.md`
 - **Owner:** [Candidate First Name] (edits accepted from Claude when changes are made during an application)
-- **Format:** Reverse-chronological. Each entry records date, section touched, nature of change (add / amend / retire), reason, and a one-line source note.
+- **Format:** Reverse-chronological, **2–4 lines per entry** — what changed and why. The session narrative belongs in the commit message; the changelog is an index of changes, not a record of reasoning.
 
-Every time this evidence bank is updated during an application, the changelog must be updated in the same session. If the changelog is not updated, the change is considered draft only.
+Every time this evidence bank is updated during an application, the changelog must be updated **and the change committed** in the same session. If the changelog is not updated, the change is considered draft only; if it is not committed, the session close is blocked by `bank-gate`.
 
 ---

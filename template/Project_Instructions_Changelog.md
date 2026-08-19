@@ -25,15 +25,16 @@ Authoritative change history for the Cowork project instructions used in the Exe
 
 ## Entry template
 
-```
-### YYYY-MM-DD — [short descriptor] — [from version → to version]
+Entries are **2–4 lines: what changed, and why.** Rationale and session narrative live in the commit message — this file is an index of changes, not a record of reasoning.
 
-- **Type:** Major / Minor / Editorial
-- **Sections touched:** e.g. Canonical sources; Mandatory gating step
-- **Change:** One or two sentences on what changed.
-- **Reason:** Why — new rule, process improvement, evidence-bank restructure, etc.
-- **Outcome:** Measurable effect where relevant (token reduction, behaviour change).
 ```
+### YYYY-MM-DD — [short descriptor] — [VX.Y → VX.Z]
+- **Change:** [What changed in the instructions.]
+- **Why:** [What triggered it.]
+- **Commit:** [hash]
+```
+
+On any version change, do exactly two things: update the single **Current version** line in `Project_Instructions.md`, and append an entry here. Never accumulate per-version banners in the instructions file itself — history belongs in this log and in git.
 
 ---
 

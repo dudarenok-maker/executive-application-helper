@@ -1,0 +1,268 @@
+/* =====================================================================
+   brand.css — Executive Application Helper shared design system
+
+   DEFAULT SYSTEM: classic executive serif | deep navy accent | no photo | A4
+     left-aligned name over a solid accent underline band, accent section
+     headings without rules, two-column career-highlights grid, and an
+     accent-barred credentials line.
+
+   Accent: #16456e — a single accent, used consistently. Re-skin freely;
+   nothing in build.py or the templates depends on the colour choice.
+
+   SETUP: the running-footer rule below renders "[Candidate Name]"
+   literally. Replace it before the first build.
+
+   Shared by resume_template.html and letter_template.html. Alternate
+   looks live in styles/<name>.css, loaded after this file via --style;
+   they reset the rules they need to override.
+   ===================================================================== */
+
+:root {
+  --navy:     #16456e;   /* deep navy — the only accent colour           */
+  --ink:      #1c1c1c;   /* body text                                    */
+  --muted:    #5a6572;   /* secondary text: dates, meta, contact         */
+  --hairline: #c9d2da;   /* neutral rules                                */
+}
+
+/* ------------------------------------------------ page geometry (A4) */
+@page {
+  size: A4;
+  margin: 14mm 18mm 15mm 18mm;
+
+  @bottom-right {
+    content: "[Candidate Name] 4  " counter(page);
+    font-family: "Liberation Serif", "DejaVu Serif", serif;
+    font-size: 8pt;
+    color: #5a6572;
+  }
+}
+
+/* --------------------------------------------------- base typography */
+html { font-size: 10pt; }
+
+body {
+  font-family: "Liberation Serif", "DejaVu Serif", serif;
+  font-size: 10pt;
+  line-height: 1.38;
+  color: var(--ink);
+  margin: 0;
+}
+
+p { margin: 0 0 2mm 0; }
+
+a { color: inherit; text-decoration: none; }
+
+/* --------------------------- name header (accent band) ------------- */
+.resume-header {
+  border-bottom: 2.6pt solid var(--navy);   /* solid navy underline band */
+  padding-bottom: 3mm;
+  margin-bottom: 5mm;
+}
+
+h1.name {
+  font-size: 24pt;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+  margin: 0 0 1.2mm 0;
+  line-height: 1.1;
+}
+
+.headline {
+  font-size: 10.5pt;
+  font-style: italic;
+  color: var(--ink);
+  margin: 0 0 1.6mm 0;
+}
+
+.contact {
+  font-size: 9pt;
+  color: var(--muted);
+  margin: 0;
+}
+.contact .sep { padding: 0 1.2mm; color: var(--hairline); }
+
+/* ------------------- section headings (navy, no rules — Mockup B) -- */
+section.section { margin-top: 4.5mm; }
+
+h2 {
+  font-size: 10.5pt;
+  font-weight: bold;
+  color: var(--navy);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  margin: 0 0 2.2mm 0;
+}
+
+h3.employer {
+  font-size: 10.5pt;
+  font-weight: bold;
+  margin: 0 0 1.5mm 0;
+  color: var(--ink);
+}
+
+/* --------------------------------------------------- profile section */
+.profile p { text-align: justify; }
+
+/* ----------------------- credentials (navy left bar — Mockup B) ---- */
+.credentials {
+  font-size: 9.5pt;
+  font-weight: bold;
+  color: var(--ink);
+  margin: 3.5mm 0 0 0;
+  padding: 0.4mm 0 0.4mm 3mm;
+  border-left: 2.6pt solid var(--navy);
+}
+
+/* -------------------------------------- bullet lists (hanging indent) */
+ul.highlight-list,
+ul.role-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.highlight-list li,
+ul.role-bullets li {
+  padding-left: 4.2mm;
+  text-indent: -4.2mm;
+  margin-bottom: 1.4mm;
+}
+ul.highlight-list li::before,
+ul.role-bullets li::before {
+  content: "\2022";
+  display: inline-block;
+  width: 4.2mm;
+  text-indent: 0;
+  color: var(--ink);
+}
+
+/* -------- two-column highlights grid (Mockup B; CSS columns keeps
+   pdftotext extraction order clean) ------------------------------- */
+ul.highlight-list {
+  columns: 2;
+  column-gap: 9mm;
+}
+ul.highlight-list li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 1.8mm;
+}
+
+/* -------------------------------------------------------- role block */
+.employer-group { page-break-inside: avoid; }
+
+.role {
+  page-break-inside: avoid;
+  margin-bottom: 3.2mm;
+}
+
+.role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.role-title {
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+
+.role-dates {
+  font-size: 9.5pt;
+  color: var(--muted);
+  white-space: nowrap;
+  padding-left: 4mm;
+}
+
+.role-meta {
+  font-style: italic;
+  font-size: 9.5pt;
+  color: var(--muted);
+  margin: 0.4mm 0 1.6mm 0;
+}
+
+/* --------------------------------------------- education, capability */
+.education-item { margin-bottom: 1.4mm; page-break-inside: avoid; }
+.education-item .degree { font-weight: bold; }
+.education-item .institution { color: var(--muted); }
+
+.capability-snapshot p { margin-bottom: 1mm; }
+.capability-snapshot .cap-label { font-weight: bold; }
+
+/* ------------------------------------------------------- short mode */
+body.short { font-size: 9.5pt; }
+body.short ul.role-bullets li { margin-bottom: 1mm; }
+
+/* short mode: tighter leading, and section/role spacing reduced ~15-20%
+   vs the defaults (plus further squeeze needed to land exactly 2 pages) */
+body.short { line-height: 1.21; }                   /* 1.38 default */
+body.short section.section { margin-top: 3.2mm; }   /* 4.5mm default */
+body.short h2 { margin-bottom: 1.8mm; }             /* 2.2mm default */
+body.short h3.employer { margin-bottom: 1.2mm; }    /* 1.5mm default */
+body.short .role { margin-bottom: 2.2mm; }          /* 3.2mm default */
+body.short .role-meta { margin-bottom: 1.3mm; }     /* 1.6mm default */
+body.short ul.highlight-list li { margin-bottom: 1.4mm; }  /* 1.8mm */
+body.short .education-item { margin-bottom: 1mm; }  /* 1.4mm default */
+body.short .resume-header { margin-bottom: 4mm; }   /* 5mm default   */
+
+/* short mode: the multi-role employer group (a long-tenure employer with several roles)
+   is taller than the free space at a page bottom — keeping it unsplit
+   strands half a page. Allow the GROUP to split; individual roles keep
+   their own page-break-inside: avoid. */
+body.short .employer-group { page-break-inside: auto; }
+
+/* short mode: capability snapshot as one compact "Label: detail" run */
+.capability-compact { text-align: justify; }
+.capability-compact .cap-label { font-weight: bold; }
+.capability-compact .cap-sep { color: var(--navy); }
+
+/* =====================================================================
+   Cover letter — shares the resume design system
+   A4, margins within the 2.2–2.5 cm band; contact header carries the
+   name in the navy band + one contact line; running footer suppressed
+   on page 1, shown from page 2.
+   ===================================================================== */
+
+@page letter {
+  size: A4;
+  margin: 23mm 23mm 24mm 23mm;
+}
+@page letter:first {
+  @bottom-right { content: none; }
+}
+
+body.letter { page: letter; }
+
+.letterhead {
+  border-bottom: 2.6pt solid var(--navy);   /* accent band */
+  padding-bottom: 3mm;
+  margin-bottom: 7mm;
+}
+.letterhead h1.name {
+  font-size: 20pt;
+  margin: 0 0 1.6mm 0;
+}
+
+.letter-date { margin: 0 0 5mm 0; }
+
+.letter-recipient { margin: 0 0 5mm 0; }
+.letter-recipient p { margin: 0; }
+
+.letter-salutation { margin: 0 0 3mm 0; }
+
+.letter-body p {
+  margin: 0 0 3mm 0;
+  text-align: justify;
+}
+
+/* sign-off travels with the closing paragraph — never orphaned */
+.letter-close { page-break-inside: avoid; }
+
+.signoff { margin-top: 6mm; }
+.signoff p { margin: 0 0 1mm 0; }
+.signoff .signature { font-weight: bold; }
+
+/* Employer descriptor — company, industry, size; once per employer */
+.employer-about { font-weight: normal; font-style: italic; font-size: 8.6pt; color: #4a5560; }
+body.short .employer-about { font-size: 8.2pt; }

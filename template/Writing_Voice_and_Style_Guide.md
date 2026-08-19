@@ -164,6 +164,35 @@ This context requires the most careful calibration. The voice stays fully intact
 
 ---
 
+## Opener rotation and the mandatory voice audit
+
+> **Setup guidance:** This section is generic — it needs no candidate-specific population beyond the sanctioned-opener list and the em-dash cap. Both are worth deciding deliberately at setup rather than drifting into.
+
+### Opener rotation
+
+A single mandated opening formula produces letters that are individually fine and collectively identical — and recruiters who see several of the candidate's applications notice before the candidate does. Rotate instead. Four openers are enough:
+
+| Opener | Shape | Best when |
+|---|---|---|
+| **Provocation question** | Opens on the question the role exists to answer. | The brief has an obvious unspoken problem behind it. |
+| **Declarative thesis** | States the candidate's central claim in one sentence, then earns it. | The fit is strong and needs no warm-up. |
+| **Mirror of the brief** | Picks up the ad's own framing and answers it directly. | The ad is unusually well written, or names a specific challenge. |
+| **Cold-open story** | Starts inside a specific moment, then pulls back to the point. | The strongest evidence is narrative and the channel is short-form. |
+
+**Rule: never the same opener twice to the same recruiter,** and never repeat the previous letter's opener regardless of recipient. The voice audit checks this against the last letter written; keep the sent letters where they can be compared.
+
+### The voice audit (mandatory, before the draft gate)
+
+Every application document is audited against this guide **before** the draft gate runs, and every finding is folded in before any file is produced. The gate's first check is blocking: no audit, no gate. The full checklist lives in the `candidate-voice` skill (Mode 4); the two rules most often broken are worth restating here.
+
+**Em-dashes: capped, and not zero.** A cap exists because unlimited em-dashes read as breathless. But zero em-dashes is not a pass — it usually means colons have quietly taken over every rhythmic beat in the document, which is the same uniformity the cap was defending against. Set a cap at setup (four to six in a short-form letter is a workable default) and treat zero as a finding.
+
+**Word-echo across paragraphs.** A distinctive noun or verb repeated in three paragraphs reads as a small vocabulary, even when every sentence around it is strong. Function words are exempt; anything the reader would notice is not.
+
+Two more, briefly: at least one **low-probability phrase** — something a language model would not reach for first — and one moment of **wit or warmth**. Executive register is not the same thing as affectless, and a letter with no human moment in it is a letter the panel forgets between reading and shortlisting.
+
+---
+
 ## Application categories — generic cover-letter framings
 
 > **Setup guidance:** Define the application categories the candidate operates across. These are referenced by the mandatory gating step in `Project_Instructions.md` (Rule 2): the only way to bypass the role-materials gate is to request a generic cover letter for one of these named categories. Six is a reasonable target; fewer is fine.

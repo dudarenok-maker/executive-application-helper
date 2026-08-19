@@ -21,56 +21,63 @@
 
 ## 0. Quick-start retrieval protocol (for Claude)
 
-This evidence bank supports **two workflows** that draw on the same entries: **application drafting** (cover letters, statements of claims, targeted pitches, etc.) and **interview preparation** (STAR-style prep documents for recruiter screens, behavioural panels and executive panels). The retrieval protocol below applies to both. The workflow-specific style baselines and output structures live in separate files: `Writing_Voice_and_Style_Guide.md` (written) and `Interview_Voice_and_Style_Guide.md` + `Interview_Prep_Template.md` (spoken).
+This evidence bank supports **two workflows** that draw on the same entries: **application drafting** (cover letters, statements of claims, targeted pitches) and **interview preparation** (STAR-style prep documents for recruiter screens, behavioural panels and executive panels). The protocol below applies to both. Workflow-specific voice baselines and output structures live in the `candidate-voice` skill.
+
+**Retrieval is index → row.** The family matrices in Section 5 are slim **indexes**; the full prescription for a matched archetype lives in its own file under `Matrix_Rows/`. Match on the index, then open only the row(s) you matched. This exists because loading a whole family matrix to use one row is how a session's context budget disappears before the drafting starts.
 
 **Before drafting any application OR preparing any interview, Claude follows this sequence:**
 
-1. **Always load this file (`Examples_Master.md`)** as the retrieval entry point. It contains the full master index, role-family recipes, signature metrics, watch-outs and formatting rules — everything needed to select entries.
-2. **Read the role materials** (advertisement, position description, candidate information pack, recruiter instructions, any attachments).
-3. **Identify the role family** from the list in Section 3 (controlled tag vocabulary).
-4. **Open Section 5 (Role-family recipes)** and note the suggested starter set of entry IDs for that role family.
-5. **Open Section 4 (Master index)** and filter by relevant capability, sector and tier to extend the starter set with role-specific proof points.
-6. **Cross-check Section 7 (Known gaps and watch-outs register)** to confirm no watch-out has been breached by the selected framing.
-7. **Load only the companion files containing the selected entries.** Use the **file map in Section 1** below to identify which section files to open. Do not load all section files by default — load only those needed for the specific role.
-8. **For interview prep, also load** `Interview_Voice_and_Style_Guide.md` (style baseline for spoken delivery) and `Interview_Prep_Template.md` (canonical prep-document structure).
-9. **Report the proposed evidence set to [Candidate First Name]** for confirmation before drafting or finalising prep.
-10. **Draft (or prep) using the selected entries**, drawing signature metrics from Section 6 where useful.
+1. **Always load this file (`Examples_Master.md`)** — Sections 0, 1.1, 3, and the Section 5 preamble and family-pointer table. This is the operating layer: protocol, entry format, controlled vocabulary, master index, family pointers.
+2. **Read the role materials** (advertisement, position description, candidate pack, recruiter instructions, attachments).
+3. **Identify the role family** from Section 3.1. If the brief blends two families in equal weight, go to the **cross-family hybrid index first**, before either family's own default.
+4. **Open the matched family's index file** and pattern-match the brief against the `Pattern (distilled)` column. Use `Notes` for tie-breaks between adjacent rows.
+5. **Open only `Matrix_Rows/<ID>.md` for the matched ID(s).** That file carries the full prescription — pattern, positioning (A-IDs with the dominant flagged), body stacks (B-IDs by paragraph), template and length band, fit-acknowledgment style, AI register, companion files, notes. It is the drafting or prep plan; follow it rather than re-deriving one.
+6. **Extend with Section 4 (master index)** — filter by capability, sector and tier for role-specific proof points beyond the row's stack.
+7. **Cross-check Section 7 (watch-outs)** for framing constraints on the chosen entries, and Section 6 for metric consistency.
+8. **Load only the companion files the matched row names.** Never load all section files by default.
+9. **Report the proposed evidence set** to [Candidate First Name] in the pre-drafting assessment before drafting.
 
-After the application is drafted or the prep document is finalised, Claude runs the **post-draft / post-prep maintenance step** (see the `Examples_Section_D_E_Personal_Maintenance.md` file and the project instructions). Both workflows feed back into the same evidence-bank changelog.
+No row matches cleanly → check the cross-family index, then the family's `-DEFAULT` row. If neither fits, say so in the assessment, propose the closest analogue, and create a new row per the second-occurrence policy in Section 5.
+
+After the deliverable is finalised, run the **maintenance step** (Step 4 in `Project_Instructions.md`). Both workflows feed the same evidence-bank changelog and the same commit.
 
 ---
 
 ## 1. How this document is structured
 
-The evidence bank is split into a Master file (this document) and companion section files. The Master file contains the operating layer (retrieval protocol, formatting rules, controlled vocabulary, master index, role-family recipes, signature metrics, watch-outs). The entry bodies sit in the companion section files and are loaded on demand.
+The evidence bank is split into a Master file (this document) and companion section files. The Master file contains the operating layer (retrieval protocol, formatting rules, controlled vocabulary, master index, the family-pointer table, signature metrics, watch-outs). The role-family matrices themselves live outside it — a slim index per family, and one detail file per archetype under `Matrix_Rows/`. The entry bodies sit in the companion section files and are loaded on demand.
 
 ### 1.1 File map
 
-> **Setup guidance:** If the candidate adjusts the capability domains during setup (renaming B1, adding B7, removing B3, etc.), update this table to match. The "Load when" column is the trigger for Claude to open that companion file.
+> **Setup guidance:** If the capability domains are renamed, added to or removed during setup (renaming B1, adding B7, removing B3), update this table to match. The "Load when" column is the trigger for Claude to open that file.
 
 | File | Section | Contents | Load when |
 |---|---|---|---|
-| `Examples_Master.md` (this file) | 0–7 | Retrieval protocol, formatting rules, tag vocabulary, master index, role-family recipes, signature metrics, watch-outs | **Always** |
-| `Examples_Section_A_Positioning.md` | A | Core positioning blocks (A1, A2, …) — identity, motivation, leadership approach, onboarding | Almost always — positioning blocks are usually relevant to every draft |
-| `Examples_Section_B1.md` | B1 | [Default: Strategy, governance and investment — rename per setup] | When role involves [trigger conditions] |
-| `Examples_Section_B2.md` | B2 | [Default: Delivery, operations and modernisation — rename per setup] | When role involves [trigger conditions] |
-| `Examples_Section_B3.md` | B3 | [Default: Procurement, shared services and vendor management — rename per setup] | When role involves [trigger conditions] |
-| `Examples_Section_B4.md` | B4 | [Default: Risk, cyber, information governance and AI — rename per setup] | When role involves [trigger conditions] |
-| `Examples_Section_B5.md` | B5 | [Default: People, culture and organisation capability — rename per setup] | When role involves [trigger conditions] |
-| `Examples_Section_B6.md` | B6 | [Default: Commercial, customer and growth — rename per setup] | When role involves [trigger conditions] |
-| `Examples_Section_C_Templates.md` | C | Ready-made templates (C1 to C6 or as configured) — SoC, behavioural response, cover letter, pitches, screening answer | When drafting — once the document format is known, load only the template file needed |
-| `Examples_Section_D_E_Personal_Maintenance.md` | D, E | Optional personal content (D1) + maintenance notes (E1–E3) | D: only when a recruiter explicitly asks for personal background. E: when maintaining the evidence bank at end of session |
+| `Examples_Master.md` (this file) | 0–7 | Retrieval protocol, formatting rules, tag vocabulary, master index, family-pointer table, signature metrics, watch-outs | **Always** |
+| `Resume_Master.md` | — | Single source of truth for career history and metrics; drives every resume build | **Always** |
+| `Examples_Section_5_*.md` | 5 | Slim role-family **indexes** — one table row per archetype | The matched family only |
+| `Matrix_Rows/<ID>.md` | 5 | The full prescription for one archetype | The matched ID(s) only — never the folder |
+| `Examples_Section_A_Positioning.md` | A | Core positioning blocks (A1, A2, …) — identity, motivation, leadership approach, onboarding | Almost always — positioning is relevant to nearly every draft |
+| `Examples_Section_B1.md` | B1 | [Default: Strategy, governance and investment — rename per setup] | When the matched row names it |
+| `Examples_Section_B2.md` | B2 | [Default: Delivery, operations and modernisation — rename per setup] | When the matched row names it |
+| `Examples_Section_B3.md` | B3 | [Default: Procurement, shared services and vendor management — rename per setup] | When the matched row names it |
+| `Examples_Section_B4.md` | B4 | [Default: Risk, cyber, information governance and AI — rename per setup] | When the matched row names it |
+| `Examples_Section_B5.md` | B5 | [Default: People, culture and organisation capability — rename per setup] | When the matched row names it |
+| `Examples_Section_B6.md` | B6 | [Default: Commercial, customer and growth — rename per setup] | When the matched row names it |
+| `Examples_Section_C_Templates.md` | C | Ready-made templates (C1–C6 or as configured) | Once the document format is known |
+| `Examples_Section_D_E_Personal_Maintenance.md` | D, E | Optional personal content (D1) + maintenance notes (E1–E3) | D: only on an explicit recruiter request. E: at the maintenance step |
+| `Pipeline/` | — | Resume and letter production (`build.py`, `brand.css`, templates) | Any output build |
 
 ### 1.2 Sections in this Master file
 
 | Section | Purpose |
 |---|---|
-| **0** | Quick-start retrieval protocol (Claude's working recipe). |
+| **0** | Quick-start retrieval protocol (index → row). |
 | **1** | Structure overview + file map. |
 | **2** | Entry formatting rules (applied inside the companion section files). |
 | **3** | Controlled tag vocabulary (four dimensions). |
 | **4** | Master index — one-row-per-entry scannable table. |
-| **5** | Role-family recipes — recommended starter sets by role family. |
+| **5** | Family-pointer table, matrix index format, and the second-occurrence row policy. |
 | **6** | Signature metrics quick reference — top quantifiable outcomes. |
 | **7** | Known gaps and watch-outs register — honesty boundaries. |
 
@@ -154,7 +161,7 @@ When a new entry is created, use the canonical label in the entry's tag block, a
 
 ### 3.5 Master-index short codes
 
-The master index in Section 4 uses short codes to keep the scannable rows compact. These codes are used **only in Section 4**. Everywhere else — Section 3.1–3.4 above, Section 5 role-family recipes, and the companion-file entry metadata blocks — the canonical full labels remain in force.
+The master index in Section 4 uses short codes to keep the scannable rows compact. These codes are used **only in Section 4**. Everywhere else — Section 3.1–3.4 above, the family indexes and `Matrix_Rows/` files, and the companion-file entry metadata blocks — the canonical full labels remain in force.
 
 > **Setup guidance:** Add a short code for every role family, capability and sector defined above. Anchor organisations are usually short enough to leave in full form.
 
@@ -246,45 +253,58 @@ Each B-subsection sits in its own companion file.
 
 ---
 
-## 5. Role-family recipes
+## 5. Role-family matrices — index and row files
 
-Each recipe is a **starter set** to be supplemented from the Master Index based on specific role requirements. All recipes should include the leadership-approach positioning block by default — drop only if not needed.
+Section 5 is a **pointer layer**, not a content layer. The archetype prescriptions live in two places:
 
-For each recipe, the **companion files you will typically need** are listed so Claude knows which files to load.
+| Layer | File | Loaded |
+|---|---|---|
+| **Index** | `Examples_Section_5_<n>_<Family>.md` — one table row per archetype | The matched family only |
+| **Detail** | `Matrix_Rows/<ID>.md` — the full prescription for one archetype | The matched ID(s) only |
 
-> **Setup guidance:** During setup, populate one recipe in detail — for the candidate's primary target role family. Add stub recipes for the others (just the role-family heading and a placeholder note "to be populated when first applied for"). Recipes deepen with use: every application adds learnings.
+The full format spec for both layers, and the row-file template, are in **`Matrix_Rows/README.md`**. Do not duplicate that guidance into the index files — the indexes carry a two-line preamble pointing here and then the table.
 
-### 5.1 [Role family 1]
+### 5.0 Family-pointer table
 
-**Core pattern:** [The recurring frame for this role family — what panels typically look for. One sentence.]
+> **Setup guidance:** Name the role families the candidate actually targets. Five to eight is typical. Add a cross-family hybrid family for briefs that blend two families in equal weight — it earns its place faster than expected, because senior briefs blend more often than they don't.
 
-**Starter set:**
-- **Positioning:** [List of A-block IDs that should anchor every draft for this role family]
-- **Evidence:** [List of B-section IDs that are the workhorses for this role family]
-- **Template:** [Default C template ID for this role family]
+| Family | Covers | Index file |
+|---|---|---|
+| 5.1 [Role family 1] | [One line on the seats this family covers] | `Examples_Section_5_1_[Name].md` |
+| 5.2 [Role family 2] | [One line] | `Examples_Section_5_2_[Name].md` |
+| 5.3 [Role family 3] | [One line] | `Examples_Section_5_3_[Name].md` |
+| 5.4 [Role family 4] | [One line] | `Examples_Section_5_4_[Name].md` |
+| 5.5 [Role family 5] | [One line] | `Examples_Section_5_5_[Name].md` |
+| 5.8 Cross-family hybrids | Briefs blending two families in equal weight — **checked FIRST when that is the case**, before either family's own default | `Examples_Section_5_8_Hybrids.md` |
 
-**Companion files to load:** Section A, [list the B-section files], C.
+### 5.1 Index file format
 
-**Optional add-ons by criterion:**
-- If [criterion] → add [entry ID]
-- If [criterion] → add [entry ID]
-- If [criterion] → add [entry ID]
+Each index file opens with a short preamble pointing at `Matrix_Rows/README.md`, then one table:
 
-### 5.2 [Role family 2]
+```markdown
+| ID | Pattern (distilled) | Tested with | Body stacks | Detail file |
+|---|---|---|---|---|
+| 5.3-EXAMPLE | Twenty-five words at most — sector, seat, mandate, and the one screen that decides it. | [Organisation], [Role] [YYYY-MM-DD] | B2-1, B4-3, B1-2 | `Matrix_Rows/5.3-EXAMPLE.md` |
+| 5.3-DEFAULT | The family fallback when no archetype matches cleanly. | [Organisations] | B2-1, B1-2, B5-1 | `Matrix_Rows/5.3-DEFAULT.md` |
+```
 
-[Stub. Populate when the candidate applies for a role in this family for the first time.]
+Target: **10 KB or less per index.** An index growing past that means the `Pattern (distilled)` column has stopped being distilled — tighten the entries rather than splitting the file. Every family carries a `-DEFAULT` row.
 
-### 5.3 [Role family 3]
+### 5.2 Second-occurrence row policy
 
-[Stub.]
+This replaces the earlier row-per-application rule, which produced a row for every brief and buried the archetypes that actually recur under the ones that never did.
 
-### 5.4 [Role family 4]
+1. **First occurrence of an unmatched pattern.** In the same session, create two things:
+   - a **slim prescription row in the family index** — **1,500 characters maximum**: pattern, positioning lead, body stack, template and length, fit-acknowledgment, AI register;
+   - a `Matrix_Rows/<ID>.md` file marked `Status: one-shot`.
+2. **Second occurrence** — a **second distinct organisation** matching the same archetype, not a repost or a v2 of the same role — promote the row to full detail: expand the pattern, record both engagements under `Tested with`, and write the tie-breaks properly now that there is something to compare against.
+3. **No parking.** Every occurrence stays greppable: index row, row file, changelog line, commit message. A pattern recorded only in the changelog does not exist as far as retrieval is concerned, and will be rediscovered from scratch next time.
 
-[Stub.]
+The judgement this encodes: one application is an anecdote; two are a pattern worth the cost of a full row.
 
-### 5.5 [Role family 5]
+### 5.3 Maintenance
 
-[Stub.]
+When a draft improves on its row's prescription, fold the improvement **back into the row file** in the same session, with a changelog line and a commit — and keep the index row in sync. That loop is the entire point of the matrix layer. A traceability finding of "undocumented drift" that turns out to be an improvement, and is then left unrecorded, is a silent loss of calibration.
 
 ---
 

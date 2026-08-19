@@ -7,7 +7,7 @@ description: "Generate the STEP 2 coverage analysis for a drafted application do
 
 Codifies STEP 2 (coverage analysis) of `Project_Instructions.md` (rev 2026-06-12). Wave 3 verification skill of the framework.
 
-This skill produces the supplementary analysis showing how well the drafted response addresses the source materials. It runs after the draft is final (post `length-check` and `watchouts-sweep`), because coverage is assessed against delivered text, not an intermediate draft.
+This skill produces the supplementary analysis showing how well the drafted response addresses the source materials. It runs after the draft is final (post `draft-gate`), because coverage is assessed against delivered text, not an intermediate draft.
 
 ---
 

@@ -10,3 +10,7 @@ desktop.ini
 # Packaged skills are built from template/skills/ at setup — don't version binaries
 *.skill
 *.zip
+
+# Python build artefacts from the pipeline
+__pycache__/
+*.pyc

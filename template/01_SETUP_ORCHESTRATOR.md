@@ -12,11 +12,12 @@ You are setting up the **Executive Application Helper** framework for a new cand
 
 ### Read these files before doing anything else
 
-1. `_Template/00_README.md` — overview of the package and the three-phase setup flow.
-2. `_Template/Project_Instructions.md` — the operating instructions the candidate will use after setup. Read this so you understand the framework you're populating for.
-3. `_Template/Examples_Master.md` — the structure of the evidence bank, especially Sections 2 (entry format), 3 (controlled vocabulary), 4 (master index), 5 (role-family recipes), 6 (signature metrics) and 7 (watch-outs).
-4. `_Template/Writing_Voice_and_Style_Guide.md` — the structural template you will be filling.
-5. `_Template/Examples_Section_C_Templates.md` — the drafting templates (largely portable; minimal customisation needed).
+1. `_Template/00_README.md` — overview of the package and the five-phase setup flow.
+2. `_Template/Project_Instructions.md` — the V6 operating instructions the candidate will use after setup. Read this so you understand the framework you are populating.
+3. `_Template/Examples_Master.md` — the structure of the evidence bank, especially Sections 2 (entry format), 3 (controlled vocabulary), 4 (master index), 5 (family indexes and the second-occurrence row policy), 6 (signature metrics) and 7 (watch-outs).
+4. `_Template/Matrix_Rows/README.md` — the index→row split and the row-file format.
+5. `_Template/Writing_Voice_and_Style_Guide.md` — the structural template you will be filling.
+6. `_Template/Examples_Section_C_Templates.md` — the drafting templates (largely portable; minimal customisation needed).
 
 Skim the rest. Do not load full content for files you will only fill in section by section.
 
@@ -31,15 +32,17 @@ Skim the rest. Do not load full content for files you will only fill in section 
 
 ---
 
-## The three setup phases
+## The five setup phases
 
 Run them in order. Confirm completion of each phase with the candidate before moving to the next.
 
-### Phase 1 — Foundations (15–20 minutes)
+### Phase 1 — Foundations (20–25 minutes)
 
-**Goal:** capture identity, contact, current and recent roles, capability domains.
+**Goal:** capture identity, contact, current and recent roles, capability domains — and put the workspace under version control before anything else is written.
 
 Steps:
+
+0. **Initialise the git repository — do this first, before writing any file.** The workspace is a git repo; that is the framework's entire safety model, replacing the snapshot-before-every-edit discipline earlier versions carried. Copy `gitignore.template` to `.gitignore` at the workspace root, run `git init`, set `user.name` and `user.email`, then `git add -A && git commit -m "Baseline: initial framework state"`. The exact commands, and the recovery commands that replace snapshots, are in the header of `gitignore.template`. If `git` is unavailable in the environment, stop and tell the candidate — do not proceed and improvise a backup scheme.
 
 1. **Identity and contact.** Ask for: full name, preferred professional name, headline title (e.g. "CIO", "Director of Operations", "Head of Product"), email, phone (optional), location, LinkedIn URL. Confirm preferred English variant (Australian / British / US).
 
@@ -62,13 +65,13 @@ Steps:
 
    Lock in the candidate's domain headings before going further. Update `Examples_Master.md` Section 1.1 (file map) and Section 4 (master index headings) to match.
 
-3. **Resume capture.** Ask the candidate to either paste their current resume content, attach a `.docx`/`.pdf`, or talk you through their last three to five roles. Capture, for each role: organisation, title, dates, scope (team size, budget, reports), three to five achievements with scope/action/outcome, and one "legacy" sentence — what they left behind. Write these into `Resume.md` as you capture them.
+3. **Resume capture.** Ask the candidate to either paste their current resume content, attach a `.docx`/`.pdf`, or talk you through their last three to five roles. Capture, for each role: organisation, title, dates, scope (team size, budget, reports), three to five achievements with scope/action/outcome, and one "legacy" sentence — what they left behind. Write these into `Resume_Master.md` as you capture them, in the format that file documents — YAML front-matter for identity, headline, contact, credentials and variants; Markdown sections for profile, career highlights, experience, education and the capability snapshot. **`Resume_Master.md` is the only resume file.** Do not create a second copy for a different audience: that is what the `variants:` block exists for, and a second file is how the two sources drift apart.
 
-4. **Word template (optional).** If the candidate has a preferred letterhead `.docx` for cover letters, ask them to place it in the workspace folder and tell you the filename. Update the relevant references in `Project_Instructions.md`. If they don't have one, note this in `Project_Instructions.md` and the framework will produce plain `.docx` outputs until one is provided.
+4. **Output production.** Ask whether the candidate wants branded PDF output now or later. If now, note it for Phase 5 — the `Pipeline/` folder ships a working build system and needs only the candidate's name in the running-footer rule and a check that the Python dependencies install. If later, the framework produces Markdown until the pipeline is wired, and nothing else changes.
 
-5. **Personalise `Project_Instructions.md`.** Replace `[Candidate Name]`, `[Candidate Contact]`, `[Word Template Filename]` and the role-family list (Section 3.1 in `Examples_Master.md`) with the candidate's real values. Update the file paths in the canonical-files table.
+5. **Personalise `Project_Instructions.md`.** Replace `[Candidate Name]`, `[Candidate First Name]` and `[Workspace Folder Path]` throughout, and populate the role-family list (Section 3.1 in `Examples_Master.md`) and the family-pointer table (Section 5.0). Update the file paths in the canonical-files table.
 
-6. **Confirm Phase 1 complete** with the candidate. Show them the populated `Resume.md` and the personalised `Project_Instructions.md`. Get their sign-off.
+6. **Confirm Phase 1 complete** with the candidate. Show them the populated `Resume_Master.md` and the personalised `Project_Instructions.md`. Get their sign-off, then commit.
 
 ### Phase 2 — Voice and style (20–30 minutes)
 
@@ -127,35 +130,53 @@ Steps:
    - C3 (NSW cover letter style) — rename to whatever jurisdiction or sector they operate in (e.g. "UK Civil Service cover letter", "ASX-listed cover letter").
    - The worked-exemplar paragraphs in each C template — leave the structural prose intact and replace the placeholder exemplars with one or two from the candidate's evidence bank once at least four B-section entries exist.
 
-4. **Master index, role-family recipes, signature metrics, watch-outs.** As you populate the section files, keep `Examples_Master.md` in sync:
+4. **Master index, family indexes, signature metrics, watch-outs.** As you populate the section files, keep `Examples_Master.md` in sync:
    - **Section 4 (Master index)** — add one row per entry as you write it.
-   - **Section 5 (Role-family recipes)** — at minimum, populate one recipe for the candidate's primary target role family. Defer the rest to the first time they apply for a role in that family.
-   - **Section 6 (Signature metrics)** — pull the strongest quantifiable outcomes from the entries as they're written.
-   - **Section 7 (Watch-outs)** — capture anything the candidate explicitly told you not to overclaim. This is critical. Examples: "don't claim direct enforcement experience"; "frame Salesforce as local owner of a global platform, not global ownership"; "don't claim founder/startup experience". Every honesty boundary captured here saves a future correction.
+   - **Section 5.0 (family-pointer table)** — name the role families the candidate actually targets, including a cross-family hybrid family for briefs that blend two families in equal weight.
+   - **Section 6 (Signature metrics)** — pull the strongest quantifiable outcomes from the entries as they are written. Every number that appears in `Resume_Master.md` must reconcile with this section; a figure on the resume but not in the bank is an unverified claim.
+   - **Section 7 (Watch-outs)** — capture anything the candidate explicitly says not to overclaim. This is the highest-value section in the bank and the one most often left empty. Ask directly: "What would you not want a panel to think you were claiming?" Every honesty boundary captured here saves a future correction.
 
-5. **Section D (optional personal content)** — only if the candidate wants a personal note ready for recruiters who explicitly ask for one.
+5. **The first family index and row file.** Copy `Examples_Section_5_INDEX_TEMPLATE.md` to `Examples_Section_5_1_[Family].md` for the candidate's primary target family and write its `-DEFAULT` row: the shape of a typical brief in that family, the positioning lead, the body stack, the template and length band, the fit-acknowledgment style. Then copy `Matrix_Rows/_ROW_TEMPLATE.md` to `Matrix_Rows/5.1-DEFAULT.md` and fill it out. Do **not** pre-build indexes for families the candidate has not applied into — under the second-occurrence policy (`Examples_Master.md` Section 5.2), archetypes are created when a real brief needs one, and promoted to full detail on a second distinct organisation. A matrix populated speculatively at setup fills with prescriptions nobody has tested.
 
-6. **Section E (maintenance notes)** — leave the structural prose as written in the template; it doesn't need personalisation.
+6. **Section D (optional personal content)** — only if the candidate wants a personal note ready for recruiters who explicitly ask for one.
 
-### Phase 4 — Install the verification skills (10–15 minutes)
+7. **Section E (maintenance notes)** — leave the structural prose as written in the template; it doesn't need personalisation.
 
-The `skills/` folder in this package carries eleven de-personalised skill skeletons (see the Verification skills section of `Project_Instructions.md` for what each enforces).
+### Phase 4 — Install the gates and skills (10–15 minutes)
 
-1. **Populate `candidate-voice`.** Copy the three guides produced in Phase 2 into `skills/candidate-voice/references/` as `style-guide.md`, `interview-style-guide.md` and `interview-prep-template.md` (the skeleton ships with the template's generic versions — replace them with the candidate's calibrated ones). Optionally rename the skill (e.g. `jane-voice`); update the `name:` field and any references in `Project_Instructions.md`.
-2. **Replace placeholders** in every `skills/*/SKILL.md` and `references/` file: `[Candidate Name]`, `[Candidate First Name]`, `[Workspace Folder Path]`. Set the workspace path at the top of `skills/bank-integrity-check/references/check-script.sh`. Measure the candidate's actual speaking pace (words per minute, with pauses) and record it in `skills/pace-audit/references/pace-method.md`.
-3. **Package each skill:** zip each skill folder's *contents* (SKILL.md + references/) as `[skill-name].skill` and install via the Claude skill installer (Cowork: present the `.skill` file and use Save skill; or Settings → Capabilities).
-4. **Verify triggering:** run one dry test ("sweep this for watchouts" on any paragraph; "check the length" on a sample letter). If a skill doesn't fire on its description, wire it more explicitly into the relevant step text in `Project_Instructions.md`.
+The `skills/` folder carries five de-personalised skill skeletons: three **composite gates** (`draft-gate`, `prep-gate`, `bank-gate`), the voice skill (`candidate-voice`) and `coverage-audit`. Earlier versions of this framework shipped eleven single-purpose skills; they were consolidated because eleven separate invocations at a session close is eleven opportunities to run ten.
 
-**Run-mode note:** start `length-check` and `watchouts-sweep` advisory; flip to gate mode after two weeks of real deliverables (see the Verification skills section). The integrity and privacy skills are blocking from day one.
+1. **Populate `candidate-voice`.** Copy the three guides produced in Phase 2 into `skills/candidate-voice/references/` as `style-guide.md`, `interview-style-guide.md` and `interview-prep-template.md` (the skeleton ships with the template's generic versions — replace them with the candidate's calibrated ones). Optionally rename the skill (e.g. `jane-voice`); update the `name:` field and every reference to it in `Project_Instructions.md`.
+2. **Replace placeholders** in every `skills/*/SKILL.md` and `references/` file: `[Candidate Name]`, `[Candidate First Name]`, `[Workspace Folder Path]`. Two specific ones matter more than the rest:
+   - **Set the workspace path** at the top of `skills/bank-gate/references/check-script.sh`, along with the register filename and reference pattern it sweeps.
+   - **Measure the candidate's actual speaking pace** — have them read 300 words aloud at interview pace, with the pauses they would really take — and record the result in `skills/prep-gate/references/pace-method.md`. A published average will under-estimate every prep document the framework ever produces.
+3. **Build `draft-gate`'s watch-out checklist.** `skills/draft-gate/references/sweep-checklist.md` is the only genuinely candidate-specific part of the gates. Populate it from whatever Section 7 currently holds — which at setup is usually very little, and that is correct. It grows one caught overclaim at a time.
+4. **Package each skill:** zip each skill folder's *contents* (SKILL.md + `references/`) as `[skill-name].skill` and install via the Claude skill installer (in Cowork: present the `.skill` file and use Save skill; otherwise Settings → Capabilities).
+5. **Verify triggering:** run one dry test per gate — "gate this draft" on a sample letter, "check the STARs" on a sample response, "check the bank" at the end of a session. If a skill does not fire on its description, wire it more explicitly into the relevant step text in `Project_Instructions.md`.
+
+**On the checklist requirement.** Each gate demands a written verification table — one row per check, each with the evidence that produced its verdict, and a self-audit line counting emitted rows against required rows. That looks like ceremony until the first time a gate reports "all clear" on a draft that had a 1,200-character screening answer in it. A verdict with no count, quote or command output is `UNVERIFIED`, and `UNVERIFIED` is a failure. Do not let a new setup soften this.
+
+**Run-mode note:** run the length and watch-out checks advisory for the first two weeks while the register is young; flip to blocking once the false-positive rate on real deliverables is under about 10%. Platform character limits and the discretion check are blocking from day one — silent truncation and privacy leaks are always actionable.
+
+### Phase 5 — Wire up the pipeline (15–20 minutes)
+
+`Pipeline/` ships a working `.md → HTML → PDF` build for both the resume and letters. It needs three things before first use.
+
+1. **Install the dependencies** — Python 3.10+ with `weasyprint`, `jinja2`, `markdown`, `pyyaml`, plus `pandoc` for the letter `.docx` export. No network access is needed at build time.
+2. **Replace the footer placeholder.** `brand.css` renders `[Candidate Name]` literally in the running footer. Replace it with the candidate's name. Re-skin the accent colour and typeface at the same time if they want to — nothing else depends on those choices.
+3. **Prove one build end to end.** Run `python3 build.py resume --source ../Resume_Master.md`, then again with `--short`, and validate with `pdfinfo` / `pdftotext` / `pdffonts` per `Pipeline/README.md`. Then build one sample letter in each band. If the master resume comes out at four pages, that is a content problem, not a build problem — tighten the source rather than the CSS.
+
+**Explain the two-stage letter rule to the candidate explicitly**, because it changes what they will receive: every letter arrives first as an editable `.docx` for them to mark up, and the final PDF is generated only after their edits are folded back into the Markdown source. They are the author; the framework drafts. Their edits are also the best voice signal the framework ever gets — recurring corrections fold into the style guide at the maintenance step.
 
 ### Final step — move and verify
 
 When all three phases are complete:
 
-1. **Move the populated files** from `_Template/` to the workspace root (`/Employment Helper/` or equivalent). Keep `_Template/` intact as the master reference for future setups or other candidates.
-2. **Verify** that `Project_Instructions.md` references the correct workspace paths, the candidate's name, the Word template filename, and the locked-in capability domain headings.
+1. **Move the populated files** from `_Template/` to the workspace root (the folder your Claude project points at). Keep `_Template/` intact as the master reference for future setups or other candidates.
+2. **Verify** that `Project_Instructions.md` references the correct workspace paths and the candidate's name, that the capability-domain headings are locked in and consistent across `Examples_Master.md` Sections 1.1 and 4, and that the family-pointer table (Section 5.0) matches the index files that actually exist.
 3. **Append an entry** to `Project_Instructions_Changelog.md` recording the setup (date, what was populated, who set it up).
-4. **Give the candidate a final summary**: which files were populated, which sections still have gaps, and what to do for their first real application (typically: provide role materials and ask for a draft).
+4. **Commit.** `git add -A && git commit -m "Setup complete: <what was populated>"`. From here, every session that touches a tracked file ends in a commit.
+5. **Give the candidate a final summary**: which files were populated, which sections still have gaps (the watch-outs register and the matrix will both be nearly empty, and should be), and what to do for their first real application — provide role materials and ask for a draft.
 
 ---
 

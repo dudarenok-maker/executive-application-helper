@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ l.name }} — Letter</title>
+</head>
+<body class="letter">
+
+  <header class="letterhead">
+    <h1 class="name">{{ l.name }}</h1>
+    {% if l.contact %}
+    <p class="contact">{% for c in l.contact %}{{ c }}{% if not loop.last %}<span class="sep">|</span>{% endif %}{% endfor %}</p>
+    {% endif %}
+  </header>
+
+  {% if l.date %}<p class="letter-date">{{ l.date }}</p>{% endif %}
+
+  {% if l.recipient %}
+  <div class="letter-recipient">
+    {% for line in l.recipient %}<p>{{ line }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if l.salutation %}<p class="letter-salutation">{{ l.salutation }}</p>{% endif %}
+
+  <div class="letter-body">
+    {% for p in l.body_paragraphs[:-1] %}<p>{{ p|md }}</p>
+    {% endfor %}
+    <div class="letter-close">
+      {% if l.body_paragraphs %}<p>{{ l.body_paragraphs[-1]|md }}</p>{% endif %}
+      <div class="signoff">
+        <p>{{ l.signoff }}</p>
+        <p class="signature">{{ l.signature }}</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
