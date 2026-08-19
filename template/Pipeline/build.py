@@ -216,7 +216,7 @@ def _parse_experience(lines, src):
             employment.append({"employer": employer, "roles": [entry],
                                "about": about})
     # employer About renders once per employer across the whole resume,
-    # even when a group is split by an interlude (e.g. FCTG / Aquatic / FCTG)
+    # even when a group is split by an interlude (employer A / employer B / employer A)
     seen = set()
     for emp in employment:
         if emp["employer"] in seen:
