@@ -24,7 +24,15 @@ git push
 
 If the mirror needs correcting first, amend or add a follow-up commit locally — the unpushed commit is the review checkpoint, not a fait accompli.
 
-Tag releases to mirror the instructions version: `git tag v0.6.5 && git push --tags` (template `v0.X.Y` mirrors instructions `VX.Y`).
+Tag releases to mirror the instructions version (template `v0.X.Y` mirrors instructions `VX.Y`). Use an **annotated** tag whose message is the release notes, so the GitHub Release can be created from it without retyping:
+
+```
+git tag -a v0.X.Y -F <notes-file>     # or -a v0.X.Y and write the message in the editor
+git push origin v0.X.Y
+gh release create v0.X.Y --notes-from-tag --verify-tag
+```
+
+Without the `gh` CLI, create the release in the web UI (Releases → Draft a new release → choose the existing tag) and paste the same notes. Release notes are written for someone deciding whether to adopt: what changed structurally, what is new, what blocks that did not block before, and what migration costs. The changelog carries the full detail; the release notes carry the decision.
 
 **Before a major release**, check three things beyond the diff:
 
