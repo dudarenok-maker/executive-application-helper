@@ -32,6 +32,10 @@ git push origin v0.X.Y
 gh release create v0.X.Y --notes-from-tag --verify-tag
 ```
 
+**Run the leak sweep before the tag, not after.** The published artefact is whatever the tag points at, so de-personalisation belongs in the commit you are about to tag. Sweep the working tree *and* history for names, employers, people, contact details, signature metrics and evidence IDs; creator/maintainer attribution (LICENSE, README credit, changelog decision records) is intentional and stays.
+
+**Tags are immutable once a release has been public for more than a day.** Before that — no forks, no consumers — moving a tag is safe and preferable to shipping a known defect: fix, `git tag -d`, re-tag, `git push --force origin vX.Y.Z`, then `gh release edit vX.Y.Z --target <sha>`. After that, never move it; cut a patch release instead. v0.6.5 was moved once, hours after release, to pick up a de-personalisation fix — that is the only circumstance where it is acceptable.
+
 Without the `gh` CLI, create the release in the web UI (Releases → Draft a new release → choose the existing tag) and paste the same notes. Release notes are written for someone deciding whether to adopt: what changed structurally, what is new, what blocks that did not block before, and what migration costs. The changelog carries the full detail; the release notes carry the decision.
 
 **Before a major release**, check three things beyond the diff:
